@@ -39,7 +39,7 @@ public class Campo {
             return false;
         }
 
-        
+
     }
     void alternarMarcacao(){
         if(!aberto){
@@ -74,9 +74,17 @@ public class Campo {
     void minar(){
             minado = true;
     }
+    public boolean isMinado(){
+        return minado;
+    }
 
     public boolean isMarcado(){
         return marcado;
+    }
+
+    
+    void setAberto(boolean aberto) {
+        this.aberto = aberto;
     }
 
     public boolean isAberto(){

@@ -139,7 +139,15 @@ public class CampoTeste {
 
         assertTrue(campo22.isAberto() && !campo11.isFechado());
     }
+        @Test
+        void testeFechado(){
+            boolean i,a,b;
 
+            i = true;
+
+
+            assertFalse(!i);
+        }
 
 
 
