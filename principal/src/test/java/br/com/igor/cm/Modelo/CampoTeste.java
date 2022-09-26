@@ -141,7 +141,7 @@ public class CampoTeste {
     }
         @Test
         void testeFechado(){
-            boolean i,a,b;
+            boolean i;
 
             i = true;
 
