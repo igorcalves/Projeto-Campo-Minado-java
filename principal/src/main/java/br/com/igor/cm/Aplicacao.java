@@ -9,7 +9,6 @@ public class Aplicacao {
         Tabuleiro tabuleiro = new Tabuleiro(6, 6, 3);
         new TabuleiroConsole(tabuleiro);
         System.out.println("oi");
-        int i;
-        int g = 25;
+
     }
 }

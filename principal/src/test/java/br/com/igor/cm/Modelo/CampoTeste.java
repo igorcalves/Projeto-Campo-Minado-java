@@ -7,148 +7,144 @@ import br.com.igor.cm.Excecao.ExplosaoException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-
 public class CampoTeste {
     private Campo campo;
 
     @BeforeEach
-    void iniciarCampo(){
-    	  campo = new Campo(3,3);
+    void iniciarCampo() {
+        campo = new Campo(3, 3);
     }
-    
+
     @Test
-    void testeVizinhoRealDistancia1Esquerda(){
+    void testeVizinhoRealDistancia1Esquerda() {
         Campo vizinho = new Campo(3, 2);
         boolean resultado = campo.adicionarVizinho(vizinho);
-        assertTrue(resultado);   
-   
+        assertTrue(resultado);
+
     }
 
     @Test
-    void testeVizinhoRealDistancia1Direita(){
+    void testeVizinhoRealDistancia1Direita() {
         Campo vizinho = new Campo(3, 4);
         boolean resultado = campo.adicionarVizinho(vizinho);
-        assertTrue(resultado);   
-   
+        assertTrue(resultado);
+
     }
 
     @Test
-    void testeVizinhoRealDistancia1EmCima(){
+    void testeVizinhoRealDistancia1EmCima() {
         Campo vizinho = new Campo(2, 3);
         boolean resultado = campo.adicionarVizinho(vizinho);
-        assertTrue(resultado);   
-   
+        assertTrue(resultado);
+
     }
+
     @Test
-    void testeVizinhoRealDistancia1EmBaixo(){
+    void testeVizinhoRealDistancia1EmBaixo() {
         Campo vizinho = new Campo(4, 3);
         boolean resultado = campo.adicionarVizinho(vizinho);
-        assertTrue(resultado);   
-   
+        assertTrue(resultado);
+
     }
 
-
     @Test
-    void testeVizinhoRealDistancia2(){
+    void testeVizinhoRealDistancia2() {
         Campo vizinho = new Campo(2, 2);
         boolean resultado = campo.adicionarVizinho(vizinho);
-        assertTrue(resultado);   
-   
+        assertTrue(resultado);
+
     }
 
     @Test
-    void testeVizinhoNaoVizinho(){
+    void testeVizinhoNaoVizinho() {
         Campo vizinho = new Campo(1, 4);
         boolean resultado = campo.adicionarVizinho(vizinho);
-        assertFalse(resultado);   
-   
+        assertFalse(resultado);
+
     }
+
     @Test
-    void teteValorPdraoMarcado(){
+    void teteValorPdraoMarcado() {
         assertFalse(campo.isMarcado());
     }
 
     @Test
-    void testeAlternarMarcacao(){
+    void testeAlternarMarcacao() {
         campo.alternarMarcacao();
         assertTrue(campo.isMarcado());
     }
+
     @Test
-    void testeAlternarMarcacaoDuasChamadsa(){
+    void testeAlternarMarcacaoDuasChamadsa() {
         campo.alternarMarcacao();
         campo.alternarMarcacao();
         assertFalse(campo.isMarcado());
     }
-    
+
     @Test
-    void testesAbrirNaoMinadoNaoMarcado(){
+    void testesAbrirNaoMinadoNaoMarcado() {
         assertTrue(campo.abrir());
     }
 
     @Test
-    void testesAbrirNaoMinadoMarcado(){
+    void testesAbrirNaoMinadoMarcado() {
         campo.alternarMarcacao();
         assertFalse(campo.abrir());
     }
 
     @Test
-    void testesAbrirMinadoMarcado(){
+    void testesAbrirMinadoMarcado() {
         campo.alternarMarcacao();
         campo.minar();
         assertFalse(campo.abrir());
     }
 
     @Test
-    void testesAbrirMinadoNaoMarcado(){
+    void testesAbrirMinadoNaoMarcado() {
         campo.minar();
 
-        assertThrows(ExplosaoException.class, () ->{
+        assertThrows(ExplosaoException.class, () -> {
             campo.abrir();
-               });
+        });
     }
 
     @Test
-    void testesAbrirVizinhos1(){
-        Campo campo11 = new Campo(1,1);
-        Campo campo22 = new Campo(2,2);
+    void testesAbrirVizinhos1() {
+        Campo campo11 = new Campo(1, 1);
+        Campo campo22 = new Campo(2, 2);
 
         campo22.adicionarVizinho(campo11);
         campo.adicionarVizinho(campo22);
-        
+
         campo.abrir();
 
         assertTrue(campo22.isAberto() && campo11.isAberto());
     }
 
     @Test
-    void testesAbrirVizinhos2(){
-        Campo campo11 = new Campo(1,1);
-        Campo campo12 = new Campo(1,1);
+    void testesAbrirVizinhos2() {
+        Campo campo11 = new Campo(1, 1);
+        Campo campo12 = new Campo(1, 1);
         campo12.minar();
-        
-        Campo campo22 = new Campo(2,2);
+
+        Campo campo22 = new Campo(2, 2);
         campo22.adicionarVizinho(campo11);
         campo22.adicionarVizinho(campo11);
-       
+
         campo.adicionarVizinho(campo22);
 
-
-        
         campo.abrir();
 
         assertTrue(campo22.isAberto() && !campo11.isFechado());
     }
-        @Test
-        void testeFechado(){
-            boolean i;
 
-            i = true;
+    @Test
+    void testeFechado() {
+        boolean i;
 
+        i = true;
 
-            assertFalse(!i);
-        }
-
-
+        assertFalse(!i);
+    }
 
 }

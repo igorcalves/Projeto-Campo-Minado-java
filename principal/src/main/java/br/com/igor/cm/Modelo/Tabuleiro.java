@@ -1,7 +1,5 @@
 package br.com.igor.cm.Modelo;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -25,29 +23,26 @@ public class Tabuleiro {
         sortearMinas();
     }
 
-    public void abrir(int linha, int coluna){
+    public void abrir(int linha, int coluna) {
         try {
             campos.parallelStream()
-        .filter(c -> c.getLinha() == linha && c.getColuna() == coluna )
-        .findFirst()
-        .ifPresent(c -> c.abrir());
+                    .filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
+                    .findFirst()
+                    .ifPresent(c -> c.abrir());
         } catch (ExplosaoException e) {
             campos.forEach(c -> c.setAberto(true));
             throw e;
         }
-        
+
     }
 
-    public void alternarMarcacao(int linha, int coluna){
+    public void alternarMarcacao(int linha, int coluna) {
         campos.parallelStream()
-        .filter(c -> c.getLinha() == linha && c.getColuna() == coluna )
-        .findFirst()
-        .ifPresent(c -> c.alternarMarcacao());
-        
+                .filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
+                .findFirst()
+                .ifPresent(c -> c.alternarMarcacao());
+
     }
-
-
-
 
     private void gerarCampos() {
 
@@ -90,11 +85,21 @@ public class Tabuleiro {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
+
+        sb.append("  ");
+        for (int c = 0; c < colunas; c++) {
+            sb.append(" ");
+            sb.append(c);
+            sb.append(" ");
+        }
+        sb.append("\n");
         int i = 0;
-        for (int L = 0; L < linhas ; L++) {
+        for (int L = 0; L < linhas; L++) {
+            sb.append(L);
+            sb.append(" ");
 
             for (int C = 0; C < colunas; C++) {
-                sb.append(" "); 
+                sb.append(" ");
                 sb.append(campos.get(i));
                 sb.append(" ");
                 i++;
