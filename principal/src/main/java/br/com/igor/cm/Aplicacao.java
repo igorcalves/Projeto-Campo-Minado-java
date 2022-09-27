@@ -10,5 +10,6 @@ public class Aplicacao {
         new TabuleiroConsole(tabuleiro);
         System.out.println("oi");
         int i;
+        int g = 25;
     }
 }
