@@ -2,6 +2,7 @@ package br.com.igor.cm.Visao;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 
 import br.com.igor.cm.Modelo.Campo;
 import br.com.igor.cm.Modelo.CampoEvento;
@@ -44,11 +45,16 @@ public class BotaoCampo extends JButton
                 aplicarEstiloPadrao();
 
         }
+        SwingUtilities.invokeLater(() -> {
+            repaint();
+            validate();
+        });
 
     }
 
     private void aplicarEstiloPadrao() {
         setBackground(BG_PADRAO);
+        setBorder(BorderFactory.createBevelBorder(0));
         setText("");
     }
 

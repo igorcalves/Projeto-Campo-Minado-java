@@ -2,6 +2,7 @@ package br.com.igor.cm.Visao;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import java.awt.GridLayout;
 
@@ -17,9 +18,16 @@ public class PainelTabuleiro extends JPanel {
         tabuleiro.paraCadaCampo(c -> add(new BotaoCampo(c)));
 
         tabuleiro.registrarObservador(e -> {
-            if (e.isGanho()) {
-                JOptionPane.showMessageDialog(this, e);
-            }
+
+            SwingUtilities.invokeLater(() -> {
+
+                if (e.isGanho()) {
+                    JOptionPane.showMessageDialog(this, "Ganhou :)");
+                } else {
+                    JOptionPane.showMessageDialog(this, "perdeu :(");
+                }
+                tabuleiro.reiniciar();
+            });
 
         });
 
